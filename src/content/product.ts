@@ -1,9 +1,11 @@
 /**
  * Product content for the AI Agent Production Readiness Kit.
  *
- * Numbers below are taken from the master spec provided by the seller.
- * If the final product ZIP files prove any figure wrong, update it here
- * and nowhere else — every component reads from this file.
+ * AGENCY EDITION IS THE FLAGSHIP PRODUCT ($299). Standard ($149) is the
+ * secondary alternative. Free Scorecard is the fallback lead magnet.
+ *
+ * Numbers below are taken from the master spec. If the final product ZIP
+ * files prove any figure wrong, update it here and nowhere else.
  *
  * No fake social proof. No invented capabilities.
  */
@@ -111,26 +113,25 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* How the system works — workflow stages                              */
+/* AGENCY WORKFLOW — how an agency engagement runs (agency POV)        */
 /* ------------------------------------------------------------------ */
 
-export type WorkflowStage = {
+export type AgencyWorkflowStage = {
   step: string;
   title: string;
   description: string;
   asset: string;
 };
 
-export const WORKFLOW_STAGES: WorkflowStage[] = [
-  { step: "01", title: "Define the agent", description: "Record scope, tools, permissions, and intended behavior.", asset: "Agent Definition" },
-  { step: "02", title: "Select relevant tests", description: "Pull from 81 reusable patterns across failure classes.", asset: "Test Case Library" },
-  { step: "03", title: "Run and record evidence", description: "Capture inputs, outputs, tool calls, and traces.", asset: "Test Execution Log" },
-  { step: "04", title: "Classify failures", description: "Map outcomes to the 20 failure classes.", asset: "Failure Taxonomy" },
-  { step: "05", title: "Test tools, recovery, escalation", description: "Probe retries, fallbacks, and human handoff boundaries.", asset: "Tool & Recovery Tests" },
-  { step: "06", title: "Measure operational cost", description: "Compute cost per successful outcome including retries and review.", asset: "Cost Analysis" },
-  { step: "07", title: "Regression-test changes", description: "Re-run after model or prompt changes to catch regressions.", asset: "Regression Tracker" },
-  { step: "08", title: "Review release readiness", description: "Produce a structured go / no-go release decision.", asset: "Production Release Gate" },
-  { step: "09", title: "Monitor production", description: "Track incidents and feed them back into tests.", asset: "Incident & Monitoring Log" },
+export const AGENCY_WORKFLOW: AgencyWorkflowStage[] = [
+  { step: "01", title: "Scope the client agent", description: "Define what it does, what tools it can use, where it must stop and what success means.", asset: "Client Discovery Workbook" },
+  { step: "02", title: "Build the evaluation set", description: "Start from the reusable pattern library and select cases relevant to the engagement.", asset: "Agent Test Case Library" },
+  { step: "03", title: "Run the tests", description: "Capture behavior, tool calls, evidence, failures and recovery.", asset: "Test Execution Log" },
+  { step: "04", title: "Classify what failed", description: "Use the failure taxonomy so findings are consistent rather than ad hoc.", asset: "Failure Taxonomy" },
+  { step: "05", title: "Retest after changes", description: "Track whether fixes work and whether new regressions appear.", asset: "Regression Tracker" },
+  { step: "06", title: "Review release readiness", description: "Use the release gate to turn results into a structured decision.", asset: "Production Release Gate" },
+  { step: "07", title: "Brief the client", description: "Use the dashboard, report and presentation to explain findings.", asset: "Client Readiness Dashboard + Report + Presentation" },
+  { step: "08", title: "Repeat across engagements", description: "Follow the usage rights and workflow provided in the Agency license.", asset: "Agency Workflow + Project Register" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -177,7 +178,7 @@ export const WALKTHROUGH_CARDS: WalkthroughCard[] = [
   {
     eyebrow: "Cost",
     heading: "Measure the cost of successful outcomes",
-    body: "Cost should include model use, tool calls, retries, infrastructure, review and failure overhead where applicable — not just token counts.",
+    body: "Cost should include model use, tool calls, retries, infrastructure, review and failure overhead where applicable, not just token counts.",
     included: "Cost-per-Success Analysis",
     visual: "cost",
   },
@@ -191,10 +192,41 @@ export const WALKTHROUGH_CARDS: WalkthroughCard[] = [
   {
     eyebrow: "Release gate",
     heading: "Turn evidence into a release review",
-    body: "The Production Release Gate supports structured decision-making. It does not mathematically certify safety — it forces an honest, evidence-backed go / no-go.",
+    body: "The Production Release Gate supports structured decision-making. It does not mathematically certify safety; it forces an honest, evidence-backed go / no-go.",
     included: "Production Release Gate",
     visual: "release-gate",
   },
+];
+
+/* ------------------------------------------------------------------ */
+/* AGENCY DELIVERABLES — the client-facing engagement system           */
+/* ------------------------------------------------------------------ */
+
+export type AgencyDeliverable = {
+  num: string;
+  title: string;
+  description: string;
+  asset: string;
+};
+
+/** The seven Agency-specific outputs, presented as one engagement system. */
+export const AGENCY_DELIVERABLES: AgencyDeliverable[] = [
+  { num: "01", title: "Client Discovery Workbook", description: "Capture the client's agent scope, tools, permissions, escalation rules and success criteria before a single test runs.", asset: "Client Discovery Workbook" },
+  { num: "02", title: "Project Register", description: "Track engagements, run IDs, agent versions and release decisions across every client in one register.", asset: "Project Register" },
+  { num: "03", title: "Client Readiness Dashboard", description: "A single view the client can read: dimensions, pass/warn/fail status, critical issues, trend.", asset: "Client Readiness Dashboard" },
+  { num: "04", title: "Production Readiness Report", description: "A written, evidence-backed report with findings, critical failures, cost and a release recommendation.", asset: "Client Production-Readiness Report" },
+  { num: "05", title: "Client Review Presentation", description: "A slide deck that turns the evaluation into a client briefing the agency can deliver.", asset: "Client Review Presentation" },
+  { num: "06", title: "Agency Workflow", description: "The repeatable engagement sequence from discovery call to release review, applied across clients.", asset: "Agency Workflow" },
+  { num: "07", title: "Failure-Cost Calculator", description: "Quantify what a failure would cost the client, so the release decision carries commercial weight.", asset: "Failure-Cost Calculator" },
+];
+
+/** "What your client receives" — the five outputs the client sees. */
+export const CLIENT_RECEIVES: AgencyDeliverable[] = [
+  { num: "01", title: "Readiness Dashboard", description: "Pass / retest / blocked status across every evaluated dimension, in one view the client can read.", asset: "Client Readiness Dashboard" },
+  { num: "02", title: "Critical Failure Summary", description: "The specific failures that block release, named and classified, not buried in a spreadsheet.", asset: "Failure Taxonomy + Report" },
+  { num: "03", title: "Evidence-backed Findings", description: "Each finding traces to a test ID, recorded behavior and a severity, so the client can verify the claim.", asset: "Test Execution Log" },
+  { num: "04", title: "Release Recommendation", description: "A structured go / no-go / retest decision from the Production Release Gate, not a vague gut call.", asset: "Production Release Gate" },
+  { num: "05", title: "Review Presentation", description: "A slide deck the agency can present, so the client briefing takes an hour, not a week.", asset: "Client Review Presentation" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -294,6 +326,24 @@ export const DEMO_DIMENSIONS: DemoDimension[] = [
 ];
 
 /* ------------------------------------------------------------------ */
+/* Release-gate statuses — used as a brand motif                      */
+/* ------------------------------------------------------------------ */
+
+export type ReleaseStatus = {
+  code: "BLOCKED" | "RETEST REQUIRED" | "PILOT CANDIDATE" | "PRODUCTION WITH OVERSIGHT" | "PRODUCTION CANDIDATE";
+  description: string;
+};
+
+/** Only statuses used in the product. Verify against the real release gate. */
+export const RELEASE_STATUSES: ReleaseStatus[] = [
+  { code: "BLOCKED", description: "A critical failure prevents release. Do not ship." },
+  { code: "RETEST REQUIRED", description: "Fixes are in. Re-run the relevant tests before deciding." },
+  { code: "PILOT CANDIDATE", description: "Release to a limited pilot with close monitoring." },
+  { code: "PRODUCTION WITH OVERSIGHT", description: "Release with defined oversight and incident response." },
+  { code: "PRODUCTION CANDIDATE", description: "Meets the release bar. Proceed with normal rollout." },
+];
+
+/* ------------------------------------------------------------------ */
 /* Before / after                                                      */
 /* ------------------------------------------------------------------ */
 
@@ -321,11 +371,12 @@ export const AFTER_POINTS = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* Editions                                                            */
+/* Editions — Agency FIRST (flagship), Standard SECOND                */
 /* ------------------------------------------------------------------ */
 
 export type Edition = {
-  id: "standard" | "agency";
+  id: "agency" | "standard";
+  tier: "flagship" | "alternative";
   name: string;
   price: number;
   priceNote: string;
@@ -333,20 +384,44 @@ export type Edition = {
   headline?: string;
   ctaLabel: string;
   features: string[];
-  agencyExtras?: string[];
   distinction: string;
-  recommended?: boolean;
+  /** Truthful label. NOT "Most popular" (no data). */
+  badge?: string;
 };
 
-export const EDITIONS: Record<"standard" | "agency", Edition> = {
+export const EDITIONS: Record<"agency" | "standard", Edition> = {
+  agency: {
+    id: "agency",
+    tier: "flagship",
+    name: "Agency Edition",
+    price: 299,
+    priceNote: "one-time",
+    subtitle: "For agencies evaluating agents across client engagements.",
+    headline: "Turn agent testing into a client deliverable.",
+    ctaLabel: "Get Agency Edition — $299",
+    badge: "Flagship edition",
+    distinction:
+      "Use the system across client engagements and produce customized client-facing deliverables according to the included license.",
+    features: [
+      "Everything in Standard, plus:",
+      "Client Discovery Workbook",
+      "Project Register",
+      "Client Readiness Dashboard",
+      "Client Production-Readiness Report",
+      "Client Review Presentation",
+      "Agency Workflow",
+      "Failure-Cost Calculator",
+      "Client-engagement usage rights per license",
+    ],
+  },
   standard: {
     id: "standard",
+    tier: "alternative",
     name: "Standard Edition",
     price: 149,
     priceNote: "one-time",
     subtitle: "For teams evaluating their own agents.",
     ctaLabel: "Get Standard — $149",
-    recommended: true,
     distinction: "Evaluate your own agents.",
     features: [
       "Production-readiness evaluation",
@@ -364,28 +439,6 @@ export const EDITIONS: Record<"standard" | "agency", Edition> = {
       "Production release gate",
       "Completed fictional demonstration",
       "Supporting methodology & reference material",
-    ],
-  },
-  agency: {
-    id: "agency",
-    name: "Agency Edition",
-    price: 299,
-    priceNote: "one-time",
-    subtitle: "For agencies evaluating agents across client engagements.",
-    headline: "Turn agent testing into a client deliverable.",
-    ctaLabel: "Get Agency — $299",
-    distinction:
-      "Use the system across client engagements and produce customized client-facing deliverables according to the included license.",
-    features: [
-      "Everything in Standard, plus:",
-      "Client discovery workbook",
-      "Project register",
-      "Client readiness dashboard",
-      "Client production-readiness report",
-      "Client review presentation",
-      "Agency workflow",
-      "Failure-cost calculator",
-      "Client-engagement usage rights per license",
     ],
   },
 };
@@ -436,29 +489,34 @@ export const SCORECARD_AREAS = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* Hero — small supporting copy                                        */
+/* Hero — Agency-first copy                                            */
 /* ------------------------------------------------------------------ */
 
 export const HERO = {
-  eyebrow: "AI Agent Production Readiness Kit",
-  headline: "Find the failures your AI agent demo does not show.",
+  eyebrow: "AI Agent Production Readiness Kit · Agency Edition",
+  headline: "Find agent failures before your client does.",
   subhead:
-    "Test tool use, grounding, retries, recovery, escalation, permissions, adversarial behavior, cost, regression and release readiness before an agent reaches production.",
-  primaryCta: { label: "Get Standard — $149", price: "$149 one-time" },
-  secondaryCta: { label: "See what's inside" },
-  agencyLine: { label: "Running evaluations for clients?", link: "View Agency Edition — $299" },
+    "A client-ready production-readiness system for AI agencies. Test tool use, grounding, recovery, escalation, permissions, adversarial behavior, cost and regression, then turn the evidence into a client-facing release review.",
+  primaryCta: { label: "Get Agency Edition — $299", price: "$299 one-time" },
+  secondaryCta: { label: "See the client deliverables", href: "#deliverables" },
+  standardLine: { label: "Testing your own agents?", link: "Standard Edition — $149", href: "#editions" },
 };
 
+/* ------------------------------------------------------------------ */
+/* Final CTA — Agency first                                            */
+/* ------------------------------------------------------------------ */
+
 export const FINAL_CTA = {
-  headline: "Do not wait for production to show you what the demo missed.",
+  headline: "Test the agent. Document the evidence. Gate the release.",
   subhead:
-    "Run a structured production-readiness evaluation before the agent reaches customers.",
-  primary: { label: "Get Standard — $149" },
-  secondary: { label: "Get Agency — $299" },
-  tertiary: { label: "Start with the free scorecard" },
+    "Bring evidence to the client review instead of a best guess. Run a structured production-readiness evaluation before the agent reaches the client's customers.",
+  primary: { label: "Get Agency Edition — $299" },
+  secondary: { label: "Standard Edition — $149" },
+  tertiary: { label: "Start with the free scorecard", href: "#free" },
 };
 
 export const BRAND = {
   name: "Readiness Kit",
   full: "AI Agent Production Readiness Kit",
+  descriptor: "AI Agent Production Evaluation",
 };

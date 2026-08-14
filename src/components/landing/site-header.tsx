@@ -14,7 +14,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { Logo } from "@/components/brand/logo";
-import { NAV_ITEMS } from "@/content/navigation";
+import { NAV_ITEMS } from "@/lib/site-config";
 import { CtaButton } from "@/components/landing/cta-button";
 import { useScrolled } from "@/components/landing/use-scrolled";
 
@@ -44,19 +44,19 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background min-h-[44px] flex items-center"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        {/* Desktop CTA */}
+        {/* Desktop CTA — Agency primary */}
         <div className="hidden items-center gap-2 md:flex">
           <CtaButton
-            linkKey="standard"
-            label="Get the Kit"
-            variant="brand"
+            linkKey="agency"
+            label="Get Agency — $299"
+            variant="agency"
             size="sm"
             fallbackAnchor="#editions"
           />
@@ -70,7 +70,7 @@ export function SiteHeader() {
                 variant="outline"
                 size="icon"
                 aria-label="Open menu"
-                className="min-h-[44px] min-w-[44px]"
+                className="min-h-[44px] min-w-[44px] rounded-md"
               >
                 <Menu className="size-5" aria-hidden />
               </Button>
@@ -92,7 +92,7 @@ export function SiteHeader() {
                   <SheetClose asChild key={item.href}>
                     <Link
                       href={item.href}
-                      className="rounded-md px-3 py-3 text-sm font-medium text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className="rounded-md px-3 py-4 text-base font-medium text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-h-[48px] flex items-center"
                     >
                       {item.label}
                     </Link>
@@ -103,16 +103,16 @@ export function SiteHeader() {
               <div className="mt-auto px-5 pb-6 pt-4">
                 <SheetClose asChild>
                   <CtaButton
-                    linkKey="standard"
-                    label="Get the Kit"
-                    variant="brand"
+                    linkKey="agency"
+                    label="Get Agency Edition — $299"
+                    variant="agency"
                     size="lg"
                     block
                     fallbackAnchor="#editions"
                   />
                 </SheetClose>
                 <p className="mt-3 text-center text-xs text-muted-foreground">
-                  Standard · $149 one-time
+                  Agency · $299 one-time · Standard $149 also available
                 </p>
               </div>
             </SheetContent>

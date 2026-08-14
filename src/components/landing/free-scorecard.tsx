@@ -39,22 +39,22 @@ export function FreeScorecard() {
     <section
       id="free"
       aria-labelledby="free-heading"
-      className="border-t border-border py-20 md:py-28"
+      className="border-t border-border py-16 md:py-20"
     >
-      <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+      <div className="mx-auto max-w-5xl px-5 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <Reveal>
-            <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              Free fallback
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              § 13 / Fallback
             </p>
             <h2
               id="free-heading"
               className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
             >
-              Not ready for the full kit?
+              Not ready to run a full evaluation?
             </h2>
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Run the 15-point AI Agent Production Readiness Scorecard first.
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              Start with the free 15-point scorecard.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               A lighter, single-workbook review across fifteen dimensions. Use
@@ -63,11 +63,11 @@ export function FreeScorecard() {
               leaves off.
             </p>
 
-            <div className="mt-6">
+            <div className="mt-5">
               <CtaButton
                 linkKey="free"
                 label="Get the Free Scorecard"
-                variant="outline"
+                variant="ghost"
                 size="default"
                 icon={<ArrowRight aria-hidden className="size-4" />}
                 fallbackAnchor="#free"
@@ -84,7 +84,7 @@ export function FreeScorecard() {
               title="15-Point Readiness Scorecard"
               subtitle="Free preview · 10 of 15 dimensions shown"
               compact
-              className="opacity-95"
+              className="opacity-90"
             />
           </Reveal>
         </div>

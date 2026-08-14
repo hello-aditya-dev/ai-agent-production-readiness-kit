@@ -6,24 +6,36 @@ import { BRAND } from "@/content/product";
 
 type LogoProps = {
   className?: string;
-  /** Show the wordmark next to the shield mark. */
+  /** Show the wordmark next to the mark. Default true. */
   showWordmark?: boolean;
   /** Compact mark only (no text). */
   compact?: boolean;
+  /** Mark pixel size. */
   size?: number;
 };
 
 /**
  * Brand mark + wordmark. Links to #top.
- * The shield SVG lives at /public/brand/mark.svg.
+ *
+ * Composition: 2x2 release-gate matrix mark (3 ink cells + 1 fail-red cell +
+ * vertical cobalt gate bar) + bold "READINESS KIT" wordmark + small mono
+ * descriptor "AI AGENT PRODUCTION EVALUATION".
+ *
+ * The mark SVG lives at /public/brand/mark.svg.
  */
-export function Logo({ className, showWordmark = true, compact = false, size = 32 }: LogoProps) {
+export function Logo({
+  className,
+  showWordmark = true,
+  compact = false,
+  size = 28,
+}: LogoProps) {
   return (
     <Link
       href="#top"
       aria-label={`${BRAND.full} — home`}
       className={cn(
-        "group inline-flex items-center gap-2.5 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        "group inline-flex items-center gap-2.5 rounded outline-none",
+        "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         className,
       )}
     >
@@ -34,15 +46,16 @@ export function Logo({ className, showWordmark = true, compact = false, size = 3
         height={size}
         priority
         aria-hidden
-        className="size-8 shrink-0 transition-transform group-hover:scale-[1.04]"
+        className="shrink-0 transition-transform group-hover:scale-[1.04]"
+        style={{ width: size, height: size }}
       />
       {!compact && showWordmark && (
         <span className="flex flex-col leading-none">
-          <span className="text-[15px] font-semibold tracking-tight text-foreground">
+          <span className="text-[15px] font-bold tracking-tight text-foreground">
             {BRAND.name}
           </span>
-          <span className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-            Production Readiness
+          <span className="mt-0.5 font-mono text-[9.5px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
+            {BRAND.descriptor}
           </span>
         </span>
       )}

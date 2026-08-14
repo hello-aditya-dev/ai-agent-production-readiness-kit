@@ -2,14 +2,14 @@ import * as React from "react";
 import Link from "next/link";
 import { Logo } from "@/components/brand/logo";
 import { BRAND } from "@/content/product";
-import { NAV_ITEMS } from "@/content/navigation";
+import { NAV_ITEMS } from "@/lib/site-config";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
     <footer
-      className="mt-auto border-t border-border bg-muted/40"
+      className="mt-auto border-t border-border bg-paper"
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">
@@ -25,7 +25,7 @@ export function SiteFooter() {
               reliability, recovery, escalation, cost, regression and release
               readiness before production.
             </p>
-            <p className="mt-4 text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">
+            <p className="mt-4 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-foreground/70">
               Product proof, not promises.
             </p>
           </div>
@@ -35,7 +35,7 @@ export function SiteFooter() {
             aria-label="Footer navigation"
             className="md:col-span-3 md:col-start-7"
           >
-            <p className="font-mono text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
               Navigate
             </p>
             <ul className="mt-3 space-y-2">
@@ -43,7 +43,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
+                    className="inline-flex items-center text-sm text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded min-h-[44px] py-1"
                   >
                     {item.label}
                   </Link>
@@ -52,35 +52,35 @@ export function SiteFooter() {
             </ul>
           </nav>
 
-          {/* Editions column */}
+          {/* Editions column — Agency first */}
           <nav
             aria-label="Footer editions"
             className="md:col-span-3 md:col-start-10"
           >
-            <p className="font-mono text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
               Editions
             </p>
             <ul className="mt-3 space-y-2">
               <li>
                 <Link
                   href="#editions"
-                  className="text-sm text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
-                >
-                  Standard · $149
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#editions"
-                  className="text-sm text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
+                  className="text-sm font-medium text-foreground transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
                 >
                   Agency · $299
                 </Link>
               </li>
               <li>
                 <Link
+                  href="#editions"
+                  className="inline-flex items-center text-sm text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded min-h-[44px] py-1"
+                >
+                  Standard · $149
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="#free"
-                  className="text-sm text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
+                  className="inline-flex items-center text-sm text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded min-h-[44px] py-1"
                 >
                   Free scorecard
                 </Link>
