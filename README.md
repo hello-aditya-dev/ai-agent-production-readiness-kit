@@ -1,33 +1,41 @@
 # AI Agent Production Readiness Kit — Product Site
 
 A production-ready, single-page marketing site for the **AI Agent Production
-Readiness Kit** — a structured evaluation system for testing AI agent
-reliability, tool use, grounding, recovery, escalation, cost, regression and
-release readiness before an agent reaches production.
+Readiness Kit** — a client-ready production-readiness evaluation system for
+AI agencies.
 
-The site is the sales and product-education layer. Gumroad remains the payment
-and product-delivery layer.
+> **Agency Edition is the flagship product ($299).** Standard Edition ($149)
+> is the secondary alternative for teams evaluating their own agents. The
+> Free Scorecard is a fallback lead magnet.
 
-> Headline: **Find the failures your AI agent demo does not show.**
+> Headline: **Find agent failures before your client does.**
+
+The site is the sales and product-education layer. Gumroad remains the
+payment and product-delivery layer.
 
 ---
 
 ## Product Site
 
 A Next.js 16 single-page application (App Router, TypeScript, Tailwind CSS 4,
-shadcn/ui) that walks a qualified buyer from problem → proof → pricing. It is
-designed to feel like a reliability-engineering product, not a template store,
-course funnel, or generic AI site.
+shadcn/ui) that walks a qualified agency buyer from problem → client
+deliverables → evidence → pricing. It is designed to feel like a
+reliability-engineering dossier and release-review system, not an AI SaaS
+template.
 
-Only the `/` route is user-visible. All 16 sections compose on a single page.
+Only the `/` route is user-visible. All sections compose on a single page.
+
+Live: https://ai-agent-production-readiness-kit.vercel.app/
 
 ## Product
 
-The **AI Agent Production Readiness Kit** is a production-readiness evaluation
-system for teams shipping AI agents. It is **not** automated testing software,
-not a course, not certification, and not a penetration-testing tool. It is a
-structured operating system of workbooks, test patterns, taxonomies, dashboards
-and a release gate that a human team uses to run, record and review agent tests.
+The **AI Agent Production Readiness Kit** is a client-ready production-
+readiness evaluation system for AI agencies. It is **not** automated testing
+software, not a course, not certification, and not penetration testing. It is
+a structured operating system of workbooks, test patterns, taxonomies,
+dashboards and a release gate that a human team uses to run, record and
+review agent tests — and, for Agency buyers, to turn the evidence into a
+client-facing release review.
 
 Verified product scope:
 
@@ -42,14 +50,16 @@ Verified product scope:
 
 ## Editions
 
-- **Standard — $149** — for teams evaluating their own agents.
-- **Agency — $299** — for agencies evaluating agents across client engagements.
-  Adds client discovery, project register, client readiness dashboard, client
-  report, review presentation, agency workflow, and a failure-cost calculator,
-  with client-engagement usage rights per the included license.
-- **Free Scorecard** — a free 15-point AI Agent Production Readiness Scorecard
-  for buyers who are not ready to purchase. This is the fallback conversion
-  path.
+- **Agency Edition — $299** *(flagship)* — for agencies evaluating agents
+  across client engagements. Adds the client-engagement system: Client
+  Discovery Workbook, Project Register, Client Readiness Dashboard, Client
+  Production-Readiness Report, Client Review Presentation, Agency Workflow,
+  Failure-Cost Calculator, with client-engagement usage rights per the
+  included license.
+- **Standard Edition — $149** — for teams evaluating their own agents. The
+  full evaluation system without the client-facing deliverables.
+- **Free Scorecard** — a free 15-point AI Agent Production Readiness
+  Scorecard for buyers who are not ready to purchase.
 
 ## Architecture
 
@@ -65,28 +75,32 @@ Verified product scope:
 ```
 src/
   app/
-    layout.tsx          # SEO metadata, fonts, root layout
-    page.tsx            # single-page composition of all 16 sections
-    globals.css         # Tailwind + brand design tokens
+    layout.tsx          # SEO metadata, fonts, JSON-LD, viewport
+    page.tsx            # single-page Agency-first composition (15 sections)
+    globals.css         # Tailwind + brand design tokens (Release Gate identity)
+    sitemap.ts          # /sitemap.xml
+    robots.ts           # /robots.txt
   content/
-    product.ts          # metrics, test cases, editions, walkthrough, etc.
-    faq.ts              # 14 FAQ entries
-    navigation.ts       # nav items
+    product.ts          # metrics, agency deliverables, editions, walkthrough, etc.
+    faq.ts              # 12 FAQ entries (Agency questions first)
   lib/
-    product-links.ts    # SINGLE source of truth for Gumroad URLs
+    site-config.ts      # CENTRAL site config (SITE_URL, SITE, NAV_ITEMS, OG_IMAGE)
+    product-links.ts    # SINGLE source of truth for Gumroad URLs + SITE_URL
     utils.ts            # shadcn cn() helper
   components/
-    landing/            # section + shared (header, hero, footer, reveal, cta-button…)
-    product/            # product visuals (release-gate, test-library-table, scorecard-panel…)
+    landing/            # sections + shared (header, hero, agency-deliverables, editions…)
+    product/            # product visuals (hero-composition, release-gate, dashboard…)
     brand/              # logo / wordmark
     ui/                 # shadcn/ui component set
 public/
-  brand/mark.svg        # brand mark
-  og/og-image.svg       # social preview image
+  brand/                # mark.svg, wordmark.svg, mark-mono.svg
+  og/                   # og-image.png (1200x630) + source svg
+  favicon.ico, favicon-*.png, icon-*.png, apple-touch-icon.png, manifest.webmanifest
 docs/
+  SEO.md                # SEO architecture + Search Console / Bing steps
+  VISUAL_ASSETS.md      # brand guide
   PRODUCT_CLAIMS.md     # internal claim ledger
   CONTENT_MAP.md        # where each piece of content lives
-  VISUAL_ASSETS.md      # how visuals were built
   DEPLOYMENT.md         # deployment guide
 ```
 
@@ -106,12 +120,12 @@ bun run build
 bun run start
 ```
 
-> Do not run `bun run build` inside the sandbox dev environment — it is
-> intended for a clean Vercel/host build. See `docs/DEPLOYMENT.md`.
+TypeScript errors fail the build (no `ignoreBuildErrors`). React strict mode
+is enabled.
 
 ## Product Links
 
-All external purchase/download URLs are centralized in a single file:
+All external purchase/download URLs are centralized in one file:
 
 ```
 src/lib/product-links.ts
@@ -119,20 +133,22 @@ src/lib/product-links.ts
 
 ```ts
 export const PRODUCT_LINKS = {
+  agency:   "", // Gumroad URL for Agency ($299) — flagship
   standard: "", // Gumroad URL for Standard ($149)
-  agency:   "", // Gumroad URL for Agency   ($299)
   free:     "", // URL for the free 15-point scorecard
 };
 ```
 
 **Status:** URLs are intentionally empty placeholders. The seller has not yet
-supplied real Gumroad URLs. When supplied, replace the three empty strings
-above — no other file needs to change. While empty, every CTA falls back to
-the `#editions` / `#free` on-page anchors and is visibly labeled
-"Gumroad URL pending" so the gap is obvious.
+supplied real Gumroad URLs. When supplied, replace the three empty strings —
+no other file needs to change. While empty, every CTA falls back to the
+`#editions` / `#free` on-page anchors and is visibly labeled "Gumroad URL
+pending" so the gap is obvious.
 
-`SITE_URL` (in the same file) holds the canonical deployed domain. Set it
-before launch so OpenGraph / Twitter cards resolve to absolute URLs.
+`SITE_URL` (in the same file) is set to the deployed Vercel URL:
+`https://ai-agent-production-readiness-kit.vercel.app`. To migrate to a custom
+domain, change **only** this value — canonical, sitemap, robots, OG, JSON-LD
+all derive from it via `src/lib/site-config.ts`.
 
 ## Content Editing
 
@@ -141,42 +157,45 @@ All commercial copy lives in structured TypeScript files, not in components:
 | Edit this | In this file |
 |---|---|
 | Product metrics (40 / 81 / 10 / 20 / 18 / 50) | `src/content/product.ts` → `PRODUCT_METRICS` |
+| Agency deliverables (7 client outputs) | `src/content/product.ts` → `AGENCY_DELIVERABLES` |
+| What the client receives (5 outputs) | `src/content/product.ts` → `CLIENT_RECEIVES` |
+| Agency workflow (8 stages) | `src/content/product.ts` → `AGENCY_WORKFLOW` |
+| Release-gate statuses | `src/content/product.ts` → `RELEASE_STATUSES` |
 | Failure-mode cards | `src/content/product.ts` → `FAILURE_MODES` |
 | "What would you test?" groups | `src/content/product.ts` → `QUESTION_GROUPS` |
-| Workflow stages | `src/content/product.ts` → `WORKFLOW_STAGES` |
 | Walkthrough sections | `src/content/product.ts` → `WALKTHROUGH_CARDS` |
 | Test-case cards | `src/content/product.ts` → `TEST_CASE_CARDS` |
 | Demo dimensions | `src/content/product.ts` → `DEMO_DIMENSIONS` |
-| Before / after lists | `src/content/product.ts` → `BEFORE_POINTS` / `AFTER_POINTS` |
-| Editions + features | `src/content/product.ts` → `EDITIONS` |
+| Editions + features (Agency first) | `src/content/product.ts` → `EDITIONS` |
 | Who it's for / not for | `src/content/product.ts` → `WHO_ITS_FOR` / `WHO_ITS_NOT_FOR` |
 | Free scorecard areas | `src/content/product.ts` → `SCORECARD_AREAS` |
-| FAQ | `src/content/faq.ts` → `FAQ_ITEMS` |
-| Navigation | `src/content/navigation.ts` → `NAV_ITEMS` |
-| Gumroad URLs | `src/lib/product-links.ts` → `PRODUCT_LINKS` |
+| Hero / final CTA copy | `src/content/product.ts` → `HERO` / `FINAL_CTA` |
+| FAQ (Agency Qs first) | `src/content/faq.ts` → `FAQ_ITEMS` |
+| Navigation | `src/lib/site-config.ts` → `NAV_ITEMS` |
+| Gumroad URLs + SITE_URL | `src/lib/product-links.ts` |
 
 See `docs/CONTENT_MAP.md` for the full map.
 
 ## Visual Assets
 
-All product visuals are built as **real JSX/CSS interface mockups** (release
-gate, test-library table, scorecard panel, workflow diagram, demo panel,
-edition comparison) — not stock images and not fake screenshots. They live in
-`src/components/product/`. The brand mark is at `public/brand/mark.svg` and the
-social preview image is at `public/og/og-image.svg`.
+All product visuals are built as **real JSX/CSS interface mockups** (Agency
+engagement dossier, release gate, test-library table, scorecard panel,
+workflow diagram, demo panel, edition comparison) — not stock images and not
+fake screenshots. They live in `src/components/product/`. Brand assets:
+`public/brand/mark.svg`, `public/brand/wordmark.svg`, `public/brand/mark-mono.svg`,
+`public/og/og-image.png`. Full brand guide: `docs/VISUAL_ASSETS.md`.
 
-No generic AI imagery, robot heads, glowing brains, or random 3D blobs are
-used anywhere. See `docs/VISUAL_ASSETS.md`.
+No generic AI imagery, robot heads, glowing brains, or random 3D blobs.
 
 ## Deployment
 
-The site is Vercel-compatible. Push the repository to GitHub and import it on
-Vercel — no environment variables are required.
+The site is Vercel-compatible and already deployed. Push to `main` on GitHub
+triggers a Vercel redeploy.
 
 Optional pre-deploy configuration:
 
 1. Set real Gumroad URLs in `src/lib/product-links.ts`.
-2. Set `SITE_URL` to the deployed domain in the same file.
+2. (For custom domain) Set `SITE_URL` to the new domain in the same file.
 
 See `docs/DEPLOYMENT.md` for the step-by-step.
 
@@ -184,19 +203,19 @@ See `docs/DEPLOYMENT.md` for the step-by-step.
 
 **None required.** The site is fully static. Do not invent environment
 variables. If Gumroad URLs ever need to vary by environment, set them in
-`src/lib/product-links.ts` directly (the file is intentionally not env-driven
-so the placeholders are visible in source).
+`src/lib/product-links.ts` directly (the file is intentionally not
+env-driven so the placeholders are visible in source).
 
 ## Quality Checks
 
 ```bash
-bun run lint      # ESLint (Next.js + strict)
-bun run build     # production build (run in a clean env, not the sandbox)
+bun run lint        # ESLint (Next.js + strict)
+bun run typecheck   # tsc --noEmit
+bun run build       # production build (strict mode, no ignoreBuildErrors)
 ```
 
-TypeScript is checked as part of the build. There are no unit tests by design —
-this is a static marketing page; the QA pass is visual + interaction
-(see `docs/DEPLOYMENT.md`).
+All three must pass. There are no unit tests by design — this is a static
+marketing page; the QA pass is visual + interaction (see `docs/DEPLOYMENT.md`).
 
 ## Commercial Safety
 
@@ -204,15 +223,16 @@ this is a static marketing page; the QA pass is visual + interaction
   customer-facing from the paid product is committed. Only safe site assets
   (code, brand mark, OG image) are in the repo.
 - No secrets, tokens, API keys, or Gumroad credentials are committed. The
-  `.gitignore` excludes `.env*`, logs, build output, and QA artifacts.
+  `.gitignore` excludes `.env*`, logs, build output, QA artifacts, and
+  sandbox infrastructure.
 - No fake social proof: no testimonials, customer logos, review scores,
   purchase counts, or badges. The site uses **product proof** instead.
 - No fake urgency: no countdown timers, no "only X left", no flashing badges.
 
 ## Gumroad Integration
 
-Purchase buttons are rendered by `src/components/landing/cta-button.tsx`, which
-reads from `PRODUCT_LINKS` in `src/lib/product-links.ts`. Behavior:
+Purchase buttons are rendered by `src/components/landing/cta-button.tsx`,
+which reads from `PRODUCT_LINKS` in `src/lib/product-links.ts`. Behavior:
 
 - If a real URL is configured: renders `<a href={url} target="_blank"
   rel="noopener noreferrer nofollow">`.
@@ -227,6 +247,13 @@ No component changes are required.
 Once the site is deployed, paste this line into the Gumroad listing copy:
 
 > Want to inspect the full system before buying? View the full product
-> walkthrough: `<SITE_URL>`
+> walkthrough: `https://ai-agent-production-readiness-kit.vercel.app/`
 
-Replace `<SITE_URL>` with the deployed domain set in `src/lib/product-links.ts`.
+## SEO
+
+See `docs/SEO.md` for the full architecture: production URL, canonical,
+sitemap, robots, structured data, OG/Twitter, favicon inventory, Google
+Search Console and Bing Webmaster steps, and custom-domain migration.
+
+The site is **technically indexable**. Actual search-engine indexing is
+controlled by the search engines.

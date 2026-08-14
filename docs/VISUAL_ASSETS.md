@@ -1,72 +1,96 @@
-# Visual Assets
+# Brand Guide — Readiness Kit
 
-## Design system
+## Concept
 
-Defined as CSS custom properties in `src/app/globals.css` (Tailwind 4
-`@theme inline`).
+The brand is built around **THE RELEASE GATE**.
 
-| Token | Use | Value (light) |
+The underlying idea: an AI system passes through structured evaluation before release. The product finds the failure that prevents a safe or justified release recommendation.
+
+Visual vocabulary comes from: test matrices, evidence tables, release states, issue markers, gates, status codes, report folios, audit labels, run IDs, review stamps, decision records, test traces.
+
+The brand does NOT derive from: robots, brains, stars, magic, sparkles, hexagons, generic shields, neural network illustrations, glowing orbs.
+
+## Logo geometry
+
+**Mark** (`/public/brand/mark.svg`): a compact 2×2 evaluation matrix with three ink cells and one failure-red cell, plus a strong vertical cobalt gate bar to the right.
+
+Meaning:
+- The 2×2 matrix = evaluation.
+- The contrasting red cell = the hidden failure the evaluation surfaces.
+- The vertical bar = the release gate.
+
+Geometry is simple enough to remain recognizable at 16×16, 32×32, 48×48, 180×180, 512×512. No microscopic detail, no tiny letters.
+
+**Wordmark** (`/public/brand/wordmark.svg`): "READINESS KIT" (bold) + mono descriptor "AI AGENT PRODUCTION EVALUATION".
+
+**Mono variant** (`/public/brand/mark-mono.svg`): all cells currentColor with the failure cell at 35% opacity — for reversed/dark contexts.
+
+The mark is original geometry. It deliberately avoids the visual appearance of Microsoft, Google, Windows, Slack, Linear, OpenAI, or other existing marks.
+
+## Colors
+
+| Token | Light | Use |
 |---|---|---|
-| `--background` | page | warm white `oklch(0.985 0.004 90)` |
-| `--foreground` | primary text | near-black navy `oklch(0.19 0.012 250)` |
-| `--brand` | accent / primary CTA | restrained engineering blue `oklch(0.47 0.16 252)` |
-| `--pass` | healthy state | green `oklch(0.58 0.14 152)` |
-| `--warn` | retest state | amber `oklch(0.7 0.15 68)` |
-| `--fail` | blocked state | red `oklch(0.55 0.21 25)` |
-| `--border` | subtle borders | neutral `oklch(0.9 0.006 250)` |
+| `--background` | `#F5F2EB` | Warm technical paper page background |
+| `--foreground` | `#101114` | Near-black ink, primary text |
+| `--brand` | `#3157FF` | Cobalt / electric technical blue — primary signal, CTAs |
+| `--pass` | `#2E7D52` | Reserved green — healthy state |
+| `--warn` | `#C7841A` | Reserved amber — retest state |
+| `--fail` | `#C53A2E` | Controlled red — blocked / failure state |
+| `--border` | `#D8D2C4` | Warm neutral hairline borders |
+| `--muted-foreground` | `#5A6376` | Secondary text |
 
-Utilities: `.bg-engineering-grid`, `.bg-engineering-dots`, `.hairline`,
-`.scroll-thin`.
+State colors are used **semantically only**. They are never decorative. Every state color is paired with a text label and an icon — color is never the only signal.
 
-No indigo or violet. Blue is used sparingly as the brand accent. State colors
-are used only for readiness semantics and are always paired with a text label
-and icon — color is never the only signal.
+No indigo. No violet. No purple. No AI-startup gradients. Cobalt is the only blue and is used sparingly.
 
-## Product visuals
+## Typography
 
-All product visuals are built as **real JSX/CSS interface mockups**, not stock
-images and not fake screenshots. They are deliberately designed to look like a
-genuine reliability-engineering product.
+- **Primary sans:** Geist (via `next/font/google`).
+- **Technical/metadata face:** Geist Mono (via `next/font/google`).
 
-| Visual | Component | What it represents |
-|---|---|---|
-| Hero composition | `src/components/product/hero-composition.tsx` | Layered stack: Release Gate + Test Library preview + Scorecard, with subtle depth |
-| Release Gate | `src/components/product/release-gate.tsx` | Dimension rows with pass/warn/fail dots + final release decision bar |
-| Test Library table | `src/components/product/test-library-table.tsx` | Compact table of real test cases (ID, scenario, severity) |
-| Scorecard panel | `src/components/product/scorecard-panel.tsx` | Dimensions with progress bars + state tint |
-| Workflow diagram | `src/components/product/workflow-diagram.tsx` | 9-stage flow: DEFINE→…→MONITOR; horizontal on desktop, vertical on mobile |
-| Edition comparison | `src/components/product/edition-comparison-table.tsx` | Standard vs Agency feature matrix |
-| Demo panel | `src/components/product/demo-panel.tsx` | Completed fictional demonstration: scope chips + dimension results + "Fictional demonstration data" badge |
-| Walkthrough visuals | `src/components/product/walkthrough-visuals.tsx` | Maps each `WALKTHROUGH_CARDS[].visual` key to the right product component |
+Monospace is used for: run IDs, test IDs (`TC-014`), state labels (`PASS`/`FAIL`/`BLOCKED`/`RETEST`), section numbering (`01`–`08`), folio/page markers, "RUN ID · RK-AGY-0299" labels. Implemented as `.mono-label` and `.folio` utilities.
 
-## Brand assets
+Monospace is **never** used for long body paragraphs. No ornamental display fonts. Identity comes from composition and hierarchy, not a novelty typeface.
 
-| Asset | Path | Notes |
-|---|---|---|
-| Brand mark | `public/brand/mark.svg` | Shield + checkmark, restrained; used in header, footer, OG image |
-| Social preview | `public/og/og-image.svg` | 1200×630; headline + subhead + 4 metric chips + release-gate visual |
+## Spacing
 
-## What is NOT used
+- Section padding: `py-20 md:py-28` typically.
+- Container: `mx-auto max-w-6xl px-5 sm:px-6 lg:px-8`.
+- Generous whitespace; restrained shadows.
 
-Per master spec §10, the following are explicitly avoided:
+## Border / radius rules
 
-- generic stock imagery
-- robot heads, glowing brains, circuit diagrams, generic neural networks
-- fake code screenshots
-- random 3D blobs
-- purple/AI-startup gradients
+Tighter than generic SaaS. Override the shadcn defaults:
+- `--radius-sm`: 2px
+- `--radius-md`: 3px
+- `--radius-lg`: 4px
+- `--radius-xl`: 6px
 
-## Responsiveness
+Cards and panels use `rounded` (4px) or `rounded-md` (3px). Big rounded SaaS corners are avoided. Dossier utilities: `.dossier` (white card + hairline border + 4px radius), `.dossier-elevated` (adds a subtle 2-layer shadow).
 
-Every visual works on large desktop, laptop, tablet, and mobile. Wide tables
-and the workflow diagram wrap or scroll within their container
-(`overflow-x-auto scroll-thin`) rather than shrinking until unreadable. The
-hero composition stacks vertically on mobile.
+## Screenshot treatment
+
+Product visuals are built as **real JSX/CSS interface mockups** — not stock images, not fake screenshots. They look like genuine reliability-engineering product UI:
+
+- `src/components/product/hero-composition.tsx` — Agency engagement dossier (Client Readiness Dashboard + Production Readiness Report + release-status strip).
+- `src/components/product/release-gate.tsx` — dimension rows with pass/warn/fail dots + release decision bar.
+- `src/components/product/test-library-table.tsx` — compact test-case table.
+- `src/components/product/scorecard-panel.tsx` — dimensions with progress bars + state tint.
+- `src/components/product/workflow-diagram.tsx` — 8-stage agency workflow.
+- `src/components/product/edition-comparison-table.tsx` — Agency vs Standard matrix.
+- `src/components/product/demo-panel.tsx` — completed fictional demonstration.
+
+Marketing-safe crops only. No full 81-row test library, no complete methodology, no formulas, no full client templates, no internal seller documents, no QA material. Demonstration data is clearly labeled "FICTIONAL DEMONSTRATION".
+
+## OG treatment
+
+`/public/og/og-image.png` — 1200×630 PNG (PNG for crawler reliability). Agency-first composition: brand mark + wordmark top-left, "Find agent failures before your client does." headline, "$299 ONE-TIME · AGENCY" metadata, right-side Client Readiness Dashboard + Production Readiness Report visual. Source SVG kept at `/public/og/og-image.src.svg`.
+
+## Favicon rules
+
+The favicon uses the Release Gate mark, not a converted shield. At 16px it retains: strong silhouette, adequate contrast, no microscopic detail, no unreadable text. Assets: `/favicon.ico` (16+32 multi-res), `/favicon-16x16.png`, `/favicon-32x32.png`, `/apple-touch-icon.png` (180), `/icon-192.png`, `/icon-512.png`. App-icon variants use an ink background with paper cells so the failure cell stays readable.
 
 ## Motion
 
-`src/components/landing/reveal.tsx` wraps section content. Content is **always
-rendered at full opacity** (opacity: 1) — the animation is a subtle slide-up
-(y: 14 → 0) on enter. This guarantees content is visible to crawlers,
-full-page screenshots, no-JS fallbacks, and any IntersectionObserver edge case.
-`prefers-reduced-motion` renders a plain wrapper with no transform.
+Subtle only. `src/components/landing/reveal.tsx` wraps content — content is **always rendered at full opacity** (opacity: 1); the animation is a slide-up (y: 14 → 0) on enter. This guarantees content is visible to crawlers, full-page screenshots, no-JS fallbacks, and any IntersectionObserver edge case. Document sheets shift 2–4px on hover. `prefers-reduced-motion` renders a plain wrapper with no transform. No continuous animation, no scroll-jacking, no WebGL, no cursor followers.

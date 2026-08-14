@@ -7,44 +7,52 @@ components.
 
 | Export | Used by | Notes |
 |---|---|---|
-| `PRODUCT_METRICS` | `ProofStrip` | 6 verified scope numbers |
+| `PRODUCT_METRICS` | Hero (proof strip merged into hero) | 6 verified scope numbers |
 | `FAILURE_MODES` | `Problem` | 8 failure-mode cards |
 | `QUESTION_GROUPS` | `WhatYouTest` | 3 groups × 4 questions |
-| `WORKFLOW_STAGES` | `HowItWorks` / `WorkflowDiagram` | 9 stages |
+| `AGENCY_WORKFLOW` | `HowItWorks` / `WorkflowDiagram` | 8 agency-POV stages |
 | `WALKTHROUGH_CARDS` | `ProductWalkthrough` | 7 alternating sections, each maps to a `visual` key |
-| `TEST_CASE_CARDS` | `TestLibraryTable` | 6 real test cases (ID, scenario, expected, forbidden, severity, category) |
+| `AGENCY_DELIVERABLES` | `AgencyDeliverables` | 7 client-facing outputs (dossier ledger) |
+| `CLIENT_RECEIVES` | `ClientReceives` | 5 things the client sees (stepped strip) |
+| `TEST_CASE_CARDS` | `RealTestExamples` / `TestLibraryTable` | 6 real test cases |
 | `DEMO_SCOPE` | `CompletedDemo` / `DemoPanel` | 4 scope chips |
-| `DEMO_DIMENSIONS` | `DemoPanel` / `ReleaseGate` | 10 dimensions with pass/warn/fail |
-| `BEFORE_POINTS` / `AFTER_POINTS` | `BeforeAfter` | 7 / 10 points |
-| `EDITIONS` | `Editions` / `EditionComparisonTable` | Standard + Agency |
-| `WHO_ITS_FOR` | `WhoItsFor` | 7 audiences |
-| `WHO_ITS_NOT_FOR` | `WhoItsNotFor` | 6 anti-claims |
+| `DEMO_DIMENSIONS` | `DemoPanel` / `ReleaseGate` / hero composition | 10 dimensions with pass/warn/fail |
+| `RELEASE_STATUSES` | `ReleaseGateSection` | 5 statuses (BLOCKED / RETEST / PILOT / PRODUCTION WITH OVERSIGHT / PRODUCTION CANDIDATE) |
+| `BEFORE_POINTS` / `AFTER_POINTS` | (before-after section was removed in refactor; content retained for future use) | — |
+| `EDITIONS` | `Editions` / `EditionComparisonTable` | Agency FIRST (flagship), Standard SECOND |
+| `WHO_ITS_FOR` / `WHO_ITS_NOT_FOR` | `AudienceSection` (merged) | 7 / 6 |
 | `SCORECARD_AREAS` | `FreeScorecard` / `ScorecardPanel` | 15 scorecard areas |
-| `HERO` | `Hero` | eyebrow, headline, subhead, CTAs |
-| `FINAL_CTA` | `FinalCta` | headline, subhead, CTAs |
-| `BRAND` | `SiteFooter`, `Logo` | name + full product name |
+| `HERO` | `Hero` | Agency-first: "Find agent failures before your client does." |
+| `FINAL_CTA` | `FinalCta` | Agency-first: "Test the agent. Document the evidence. Gate the release." |
+| `BRAND` | `SiteFooter`, `Logo`, `site-config` | name + full name + descriptor |
 
 ## `src/content/faq.ts`
 
 | Export | Used by | Notes |
 |---|---|---|
-| `FAQ_ITEMS` | `Faq` | 14 Q&A entries answering real purchasing objections |
+| `FAQ_ITEMS` | `Faq` | 12 Q&A entries, **Agency questions first** |
 
-## `src/content/navigation.ts`
+## `src/lib/site-config.ts` (central config)
 
 | Export | Used by | Notes |
 |---|---|---|
-| `NAV_ITEMS` | `SiteHeader` (desktop + mobile) + `SiteFooter` | 5 anchor links |
+| `SITE_URL` / `SITE_ORIGIN` / `absoluteUrl()` | layout, sitemap, robots, JSON-LD, OG | derives from `product-links.ts` |
+| `SITE` | layout, metadata | name, fullName, tagline, description, topics |
+| `NAV_ITEMS` | `SiteHeader` (desktop + mobile) + `SiteFooter` | 6 anchor links |
+| `EDITION_ORDER` | (available; editions component uses EDITIONS record directly) | Agency first |
+| `PRODUCT_METRICS` | Hero | 6 metrics (mirrored) |
+| `THEME_COLOR` / `THEME_COLOR_LIGHT` | layout viewport | ink / paper |
+| `OG_IMAGE` | layout metadata | 1200×630 PNG |
 
 ## `src/lib/product-links.ts`
 
 | Export | Used by | Notes |
 |---|---|---|
-| `PRODUCT_LINKS` | `CtaButton` (all CTAs) | single source of truth for Gumroad URLs |
-| `SITE_URL` | `layout.tsx` metadataBase | deployed domain placeholder |
+| `PRODUCT_LINKS` | `CtaButton` (all CTAs) | single source of truth for Gumroad URLs (agency/standard/free) |
+| `SITE_URL` | `site-config.ts` | deployed Vercel URL |
 | `hrefFor`, `hasLink`, `EXTERNAL_LINK_REL` | `CtaButton` | helpers |
 
-## Severity → color mapping (in `TestLibraryTable`)
+## Severity → color mapping (in `TestLibraryTable` / `RealTestExamples`)
 
 | Severity | Color token | Always paired with text label |
 |---|---|---|
@@ -53,12 +61,22 @@ components.
 | Medium | `brand` | yes |
 | Low | `muted` | yes |
 
-Color is never the only signal — every severity badge shows its text label.
+## Release-status → color mapping (in `ReleaseGateSection` / `ReleaseGate`)
 
-## Demo dimension → state mapping (in `DemoPanel` / `ReleaseGate`)
+| Status | Color token | Label |
+|---|---|---|
+| BLOCKED | `fail` | BLOCKED |
+| RETEST REQUIRED | `warn` | RETEST REQUIRED |
+| PILOT CANDIDATE | `brand` | PILOT CANDIDATE |
+| PRODUCTION WITH OVERSIGHT | `warn` | PRODUCTION WITH OVERSIGHT |
+| PRODUCTION CANDIDATE | `pass` | PRODUCTION CANDIDATE |
+
+Color is never the only signal — every status shows its text label.
+
+## Demo dimension → state mapping
 
 | State | Color token | Icon | Label |
 |---|---|---|---|
-| pass | `pass` (green) | `Check` | "pass" |
-| warn | `warn` (amber) | `AlertTriangle` | "retest" |
-| fail | `fail` (red) | `X` | "blocked" |
+| pass | `pass` | `Check` | pass |
+| warn | `warn` | `AlertTriangle` | retest |
+| fail | `fail` | `X` | blocked |
