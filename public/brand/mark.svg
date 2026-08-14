@@ -1,6 +1,17 @@
-<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Readiness Kit mark">
-  <rect width="40" height="40" rx="9" fill="#0F1B3D"/>
-  <path d="M20 6 L31 10 V20 C31 27 26 32 20 34 C14 32 9 27 9 20 V10 Z" fill="#1E40AF" fill-opacity="0.18" stroke="#3B6FE0" stroke-width="1.5" stroke-linejoin="round"/>
-  <path d="M14.5 20.5 L18.5 24.5 L26 16" stroke="#3B6FE0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="9" y="6" width="22" height="28" rx="3" fill="none" stroke="#3B6FE0" stroke-width="0.6" stroke-opacity="0.35"/>
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Readiness Kit — release gate mark">
+  <!--
+    Readiness Kit brand mark: TEST MATRIX + RELEASE GATE.
+    A 2x2 evaluation matrix (three ink cells, one failure-red cell) with a
+    strong vertical gate bar to the right. The matrix = evaluation; the
+    contrasting cell = the hidden failure; the bar = the release gate.
+    Original geometry, no shield/security-cliché references.
+  -->
+  <!-- matrix cells (2x2), 3 ink + 1 failure -->
+  <rect x="6"  y="6"  width="15" height="15" rx="1.5" fill="#101114"/>
+  <rect x="6"  y="27" width="15" height="15" rx="1.5" fill="#101114"/>
+  <rect x="27" y="6"  width="15" height="15" rx="1.5" fill="#101114"/>
+  <!-- the hidden failure cell -->
+  <rect x="27" y="27" width="15" height="15" rx="1.5" fill="#C53A2E"/>
+  <!-- vertical release gate bar -->
+  <rect x="46.5" y="3" width="3" height="42" rx="1.5" fill="#3157FF"/>
 </svg>

@@ -1,0 +1,100 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Agent Production Readiness Kit, Agency Edition">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8F7F3"/>
+      <stop offset="1" stop-color="#F1EEE6"/>
+    </linearGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0 H0 V30" fill="none" stroke="#101114" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#paper)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- top-left brand block -->
+  <g transform="translate(60,56)">
+    <rect x="0"  y="0"  width="22" height="22" rx="2" fill="#101114"/>
+    <rect x="0"  y="26" width="22" height="22" rx="2" fill="#101114"/>
+    <rect x="26" y="0"  width="22" height="22" rx="2" fill="#101114"/>
+    <rect x="26" y="26" width="22" height="22" rx="2" fill="#C53A2E"/>
+    <rect x="53" y="-3" width="5" height="54" rx="2" fill="#3157FF"/>
+    <text x="72" y="20" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="700" letter-spacing="-0.3" fill="#101114">READINESS KIT</text>
+    <text x="72" y="42" font-family="DejaVu Sans Mono, monospace" font-size="10" font-weight="500" letter-spacing="1.4" fill="#5A6376">AI AGENT PRODUCTION READINESS · AGENCY EDITION</text>
+  </g>
+
+  <text x="1140" y="76" text-anchor="end" font-family="DejaVu Sans Mono, monospace" font-size="11" font-weight="500" letter-spacing="1.4" fill="#5A6376">RUN ID · RK-AGY-0299</text>
+
+  <!-- headline -->
+  <text x="60" y="232" font-family="DejaVu Sans, sans-serif" font-size="64" font-weight="700" letter-spacing="-2" fill="#101114">Find agent failures</text>
+  <text x="60" y="302" font-family="DejaVu Sans, sans-serif" font-size="64" font-weight="700" letter-spacing="-2" fill="#101114">before your client does.</text>
+
+  <text x="60" y="356" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="500" fill="#3157FF">Client-ready testing, evidence and release review.</text>
+
+  <!-- bottom metadata strip -->
+  <g transform="translate(60,478)">
+    <line x1="0" y1="0" x2="700" y2="0" stroke="#101114" stroke-opacity="0.18"/>
+    <g font-family="DejaVu Sans Mono, monospace">
+      <text x="0" y="40" fill="#101114" font-weight="700" font-size="26">81</text>
+      <text x="0" y="64" fill="#5A6376" font-size="12" letter-spacing="1">TEST PATTERNS</text>
+    </g>
+    <g transform="translate(180,0)" font-family="DejaVu Sans Mono, monospace">
+      <text x="0" y="40" fill="#101114" font-weight="700" font-size="26">20</text>
+      <text x="0" y="64" fill="#5A6376" font-size="12" letter-spacing="1">FAILURE CLASSES</text>
+    </g>
+    <g transform="translate(380,0)" font-family="DejaVu Sans Mono, monospace">
+      <text x="0" y="40" fill="#101114" font-weight="700" font-size="26">$299</text>
+      <text x="0" y="64" fill="#5A6376" font-size="12" letter-spacing="1">ONE-TIME · AGENCY</text>
+    </g>
+  </g>
+
+  <!-- right-side agency engagement composition -->
+  <g transform="translate(740,120)">
+    <!-- back: client readiness dashboard -->
+    <rect x="0" y="0" width="380" height="250" rx="6" fill="#FFFFFF" stroke="#101114" stroke-opacity="0.12"/>
+    <text x="18" y="30" font-family="DejaVu Sans Mono, monospace" font-size="10" font-weight="600" letter-spacing="1.2" fill="#5A6376">CLIENT READINESS DASHBOARD</text>
+    <line x1="18" y1="42" x2="362" y2="42" stroke="#101114" stroke-opacity="0.1"/>
+    <g font-family="DejaVu Sans, sans-serif" font-size="12">
+      <text x="18" y="68" fill="#101114">Tool selection</text>
+      <rect x="200" y="58" width="160" height="14" rx="2" fill="#2E7D52" fill-opacity="0.4"/>
+      <text x="318" y="69" font-family="DejaVu Sans Mono, monospace" font-size="10" fill="#1F5132">PASS</text>
+
+      <text x="18" y="94" fill="#101114">Grounding</text>
+      <rect x="200" y="84" width="120" height="14" rx="2" fill="#C7841A" fill-opacity="0.55"/>
+      <text x="308" y="95" font-family="DejaVu Sans Mono, monospace" font-size="10" fill="#6B4A12">RETEST</text>
+
+      <text x="18" y="120" fill="#101114">Duplicate action</text>
+      <rect x="200" y="110" width="60" height="14" rx="2" fill="#C53A2E" fill-opacity="0.6"/>
+      <text x="240" y="121" font-family="DejaVu Sans Mono, monospace" font-size="9" fill="#6B1F18">BLOCKED</text>
+
+      <text x="18" y="146" fill="#101114">Escalation</text>
+      <rect x="200" y="136" width="150" height="14" rx="2" fill="#2E7D52" fill-opacity="0.4"/>
+      <text x="310" y="147" font-family="DejaVu Sans Mono, monospace" font-size="10" fill="#1F5132">PASS</text>
+
+      <text x="18" y="172" fill="#101114">Cost per success</text>
+      <rect x="200" y="162" width="110" height="14" rx="2" fill="#C7841A" fill-opacity="0.55"/>
+      <text x="298" y="173" font-family="DejaVu Sans Mono, monospace" font-size="10" fill="#6B4A12">RETEST</text>
+    </g>
+
+    <!-- front-left: production readiness report -->
+    <g transform="translate(20,118)">
+      <rect x="0" y="0" width="200" height="160" rx="6" fill="#FFFFFF" stroke="#101114" stroke-opacity="0.22"/>
+      <text x="14" y="22" font-family="DejaVu Sans Mono, monospace" font-size="9" font-weight="600" letter-spacing="1" fill="#5A6376">PRODUCTION READINESS REPORT</text>
+      <line x1="14" y1="32" x2="186" y2="32" stroke="#101114" stroke-opacity="0.1"/>
+      <text x="14" y="54" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="700" fill="#101114">Release decision</text>
+      <rect x="14" y="62" width="172" height="26" rx="3" fill="#101114"/>
+      <text x="22" y="80" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="700" fill="#F5F2EB">CONDITIONAL GO</text>
+      <text x="132" y="80" font-family="DejaVu Sans Mono, monospace" font-size="9" fill="#C7841A">RETEST 2</text>
+      <text x="14" y="108" font-family="DejaVu Sans Mono, monospace" font-size="9" fill="#5A6376">CRITICAL ISSUES</text>
+      <text x="14" y="124" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#101114">1 blocked · 2 retest · 7 pass</text>
+      <text x="14" y="146" font-family="DejaVu Sans Mono, monospace" font-size="9" fill="#5A6376">REVIEWER · AGENCY LEAD</text>
+    </g>
+
+    <!-- top-right status strip -->
+    <g transform="translate(258,16)">
+      <rect x="0" y="0" width="124" height="36" rx="3" fill="#101114"/>
+      <text x="10" y="16" font-family="DejaVu Sans Mono, monospace" font-size="8" font-weight="600" letter-spacing="1" fill="#9FB0D8">RELEASE REVIEW</text>
+      <text x="10" y="30" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">RETEST REQUIRED</text>
+    </g>
+  </g>
+</svg>
