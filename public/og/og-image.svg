@@ -1,0 +1,92 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI Agent Production Readiness Kit">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7F6F2"/>
+      <stop offset="1" stop-color="#ECEEF4"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F4F5F9"/>
+    </linearGradient>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0 H0 V36" fill="none" stroke="#3B6FE0" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Brand mark -->
+  <g transform="translate(80,72)">
+    <rect width="44" height="44" rx="10" fill="#0F1B3D"/>
+    <path d="M22 8 L34 12 V22 C34 29 29 34 22 36 C15 34 10 29 10 22 V12 Z" fill="#1E40AF" fill-opacity="0.18" stroke="#3B6FE0" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M16 22 L20 26 L28 17" stroke="#3B6FE0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="138" y="100" font-family="Geist, Inter, system-ui, sans-serif" font-size="20" font-weight="600" fill="#1F2740">Readiness Kit</text>
+
+  <!-- Headline -->
+  <text x="80" y="240" font-family="Geist, Inter, system-ui, sans-serif" font-size="68" font-weight="700" fill="#101728" letter-spacing="-1.5">AI Agent Production</text>
+  <text x="80" y="318" font-family="Geist, Inter, system-ui, sans-serif" font-size="68" font-weight="700" fill="#101728" letter-spacing="-1.5">Readiness Kit</text>
+
+  <text x="80" y="378" font-family="Geist, Inter, system-ui, sans-serif" font-size="30" font-weight="500" fill="#3B6FE0">Find the failures your AI agent demo does not show.</text>
+
+  <text x="80" y="430" font-family="Geist, Inter, system-ui, sans-serif" font-size="22" font-weight="400" fill="#4A5468">Tool use · grounding · recovery · escalation · cost · regression · release gate</text>
+
+  <!-- Metric chips -->
+  <g font-family="Geist, Inter, system-ui, sans-serif">
+    <g transform="translate(80,478)">
+      <rect width="150" height="84" rx="10" fill="url(#card)" stroke="#D8DCE6"/>
+      <text x="16" y="42" font-size="34" font-weight="700" fill="#101728">40</text>
+      <text x="16" y="68" font-size="14" fill="#5A6376">Readiness checks</text>
+    </g>
+    <g transform="translate(244,478)">
+      <rect width="150" height="84" rx="10" fill="url(#card)" stroke="#D8DCE6"/>
+      <text x="16" y="42" font-size="34" font-weight="700" fill="#101728">81</text>
+      <text x="16" y="68" font-size="14" fill="#5A6376">Test patterns</text>
+    </g>
+    <g transform="translate(408,478)">
+      <rect width="150" height="84" rx="10" fill="url(#card)" stroke="#D8DCE6"/>
+      <text x="16" y="42" font-size="34" font-weight="700" fill="#101728">20</text>
+      <text x="16" y="68" font-size="14" fill="#5A6376">Failure classes</text>
+    </g>
+    <g transform="translate(572,478)">
+      <rect width="150" height="84" rx="10" fill="url(#card)" stroke="#D8DCE6"/>
+      <text x="16" y="42" font-size="34" font-weight="700" fill="#101728">18</text>
+      <text x="16" y="68" font-size="14" fill="#5A6376">Adversarial tests</text>
+    </g>
+  </g>
+
+  <!-- Right-side release gate visual -->
+  <g transform="translate(820,150)">
+    <rect width="300" height="330" rx="14" fill="url(#card)" stroke="#D8DCE6"/>
+    <text x="20" y="40" font-family="Geist, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#5A6376" letter-spacing="0.5">PRODUCTION RELEASE GATE</text>
+
+    <g transform="translate(20,64)">
+      <rect width="260" height="34" rx="6" fill="#EAF3EC"/>
+      <circle cx="18" cy="17" r="5" fill="#2E8B57"/>
+      <text x="34" y="22" font-family="Geist, Inter, system-ui, sans-serif" font-size="13" fill="#1F5132">Tool selection · pass</text>
+    </g>
+    <g transform="translate(20,104)">
+      <rect width="260" height="34" rx="6" fill="#FDF4E3"/>
+      <circle cx="18" cy="17" r="5" fill="#C7841A"/>
+      <text x="34" y="22" font-family="Geist, Inter, system-ui, sans-serif" font-size="13" fill="#6B4A12">Grounding · retest 2</text>
+    </g>
+    <g transform="translate(20,144)">
+      <rect width="260" height="34" rx="6" fill="#FBE7E5"/>
+      <circle cx="18" cy="17" r="5" fill="#B23A2E"/>
+      <text x="34" y="22" font-family="Geist, Inter, system-ui, sans-serif" font-size="13" fill="#6B1F18">Duplicate action · blocked</text>
+    </g>
+    <g transform="translate(20,184)">
+      <rect width="260" height="34" rx="6" fill="#EAF3EC"/>
+      <circle cx="18" cy="17" r="5" fill="#2E8B57"/>
+      <text x="34" y="22" font-family="Geist, Inter, system-ui, sans-serif" font-size="13" fill="#1F5132">Escalation · pass</text>
+    </g>
+
+    <g transform="translate(20,238)">
+      <rect width="260" height="68" rx="8" fill="#0F1B3D"/>
+      <text x="16" y="28" font-family="Geist, Inter, system-ui, sans-serif" font-size="12" fill="#9FB0D8" letter-spacing="0.6">RELEASE DECISION</text>
+      <text x="16" y="54" font-family="Geist, Inter, system-ui, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Conditional go</text>
+      <text x="180" y="54" font-family="Geist, Inter, system-ui, sans-serif" font-size="13" fill="#C7841A">fix 1 blocker</text>
+    </g>
+  </g>
+</svg>
