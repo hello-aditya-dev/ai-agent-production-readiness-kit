@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-import { SITE_URL } from "@/lib/product-links";
+import { SITE, absoluteUrl, OG_IMAGE, THEME_COLOR, THEME_COLOR_LIGHT } from "@/lib/site-config";
+import { PRODUCT_LINKS, hasLink } from "@/lib/product-links";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,61 +17,136 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const canonical = absoluteUrl("/");
+
 /**
- * SEO metadata.
- * `metadataBase` resolves to SITE_URL when configured (production),
- * otherwise falls back to localhost so OG/Twitter URLs still resolve in dev.
- * Do not hard-code a fake deployed domain — set SITE_URL in product-links.ts
- * once the real domain is known.
+ * JSON-LD structured data.
+ * Product (Agency Edition, flagship) + a secondary Offer for Standard.
+ * No fake reviews, ratings, or SKUs.
  */
-export const metadata: Metadata = {
-  metadataBase: SITE_URL ? new URL(SITE_URL) : new URL("http://localhost:3000"),
-  title: "AI Agent Production Readiness Kit | Test Before Production",
-  description:
-    "A structured evaluation system for testing AI agent reliability, tool use, grounding, recovery, escalation, cost, regression and release readiness.",
-  keywords: [
-    "AI agent testing",
-    "agent production readiness",
-    "agent evaluation",
-    "agent reliability",
-    "tool use testing",
-    "grounding evaluation",
-    "agent regression testing",
-    "release gate",
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": canonical + "#website",
+      url: canonical,
+      name: SITE.fullName,
+      description: SITE.description,
+      publisher: { "@id": canonical + "#product" },
+    },
+    {
+      "@type": "WebPage",
+      "@id": canonical + "#webpage",
+      url: canonical,
+      name: "AI Agent Production Readiness Kit — Agency Edition",
+      isPartOf: { "@id": canonical + "#website" },
+      about: { "@id": canonical + "#product" },
+      inLanguage: "en",
+    },
+    {
+      "@type": "Product",
+      "@id": canonical + "#product",
+      name: "AI Agent Production Readiness Kit",
+      description: SITE.description,
+      category: "AI agent evaluation",
+      brand: { "@type": "Brand", name: SITE.name },
+      offers: [
+        {
+          "@type": "Offer",
+          name: "Agency Edition",
+          description:
+            "Client-ready production-readiness evaluation system for AI agencies. Includes client discovery, project register, client readiness dashboard, client report, review presentation, agency workflow and failure-cost calculator, with client-engagement usage rights per the included license.",
+          price: "299.00",
+          priceCurrency: "USD",
+          priceValidUntil: "2026-12-31",
+          availability: "https://schema.org/InStock",
+          url: hasLink("agency") ? PRODUCT_LINKS.agency : canonical + "#editions",
+        },
+        {
+          "@type": "Offer",
+          name: "Standard Edition",
+          description:
+            "Production-readiness evaluation system for teams evaluating their own AI agents. Includes the reusable test library, failure taxonomy, grounding, tool/recovery/escalation testing, adversarial tests, cost analysis, regression tracking, incident tracking, monitoring templates, the production release gate and the completed fictional demonstration.",
+          price: "149.00",
+          priceCurrency: "USD",
+          priceValidUntil: "2026-12-31",
+          availability: "https://schema.org/InStock",
+          url: hasLink("standard") ? PRODUCT_LINKS.standard : canonical + "#editions",
+        },
+      ],
+    },
   ],
-  authors: [{ name: "Readiness Kit" }],
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL(canonical),
+  title: "AI Agent Production Readiness Kit | Agency Evaluation System",
+  description:
+    "A client-ready production-readiness evaluation system for AI agencies. Test agent tool use, grounding, recovery, escalation, adversarial behavior, cost and regression, then turn the evidence into a client-facing release review.",
+  applicationName: SITE.name,
+  generator: "Next.js",
+  referrer: "origin-when-cross-origin",
+  keywords: [
+    ...SITE.supportingTopics,
+    SITE.primaryTopic,
+  ],
+  authors: [{ name: SITE.name }],
+  creator: SITE.name,
+  publisher: SITE.name,
   alternates: {
     canonical: "/",
   },
+  formatDetection: { email: false, address: false, telephone: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/brand/mark.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
   openGraph: {
-    title: "AI Agent Production Readiness Kit",
-    description:
-      "Find the failures your AI agent demo does not show. A structured evaluation system for AI agent reliability, recovery, escalation, cost, regression and release readiness.",
-    siteName: "AI Agent Production Readiness Kit",
     type: "website",
+    locale: "en_US",
+    url: canonical,
+    siteName: SITE.name,
+    title: "AI Agent Production Readiness Kit — Agency Edition",
+    description:
+      "Find agent failures before your client does. A client-ready evaluation system for AI agencies — test tool use, grounding, recovery, escalation, cost and regression, then deliver a client-facing release review.",
     images: [
       {
-        url: "/og/og-image.svg",
-        width: 1200,
-        height: 630,
-        alt: "AI Agent Production Readiness Kit — find the failures your demo does not show",
+        url: OG_IMAGE.src,
+        width: OG_IMAGE.width,
+        height: OG_IMAGE.height,
+        alt: OG_IMAGE.alt,
+        type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Agent Production Readiness Kit",
+    title: "AI Agent Production Readiness Kit — Agency Edition",
     description:
-      "Find the failures your AI agent demo does not show. Test tool use, grounding, recovery, escalation, cost, regression and release readiness before production.",
-    images: ["/og/og-image.svg"],
+      "Find agent failures before your client does. Client-ready agent testing, evidence and release review for AI agencies.",
+    images: [OG_IMAGE.src],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  icons: {
-    icon: "/brand/mark.svg",
-  },
+  verification: {},
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: THEME_COLOR_LIGHT },
+    { media: "(prefers-color-scheme: dark)", color: THEME_COLOR },
+  ],
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({
@@ -85,6 +161,10 @@ export default function RootLayout({
       >
         {children}
         <Toaster />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   );

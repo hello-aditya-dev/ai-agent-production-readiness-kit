@@ -26,11 +26,14 @@ export const PRODUCT_LINKS = {
 /**
  * Canonical public URL of this landing page.
  *
- * Used for Open Graph, canonical link, and the Gumroad link-back line.
- * Replace with the real deployed domain (e.g. on Vercel) before launch.
- * Left as a placeholder until the domain is known.
+ * Used for Open Graph, canonical link, the Gumroad link-back line, and as
+ * the metadataBase for all absolute URL resolution.
+ *
+ * This is the deployed Vercel URL. To migrate to a custom domain, change
+ * ONLY this value — everything else (sitemap, robots, OG, JSON-LD, canonical)
+ * derives from it via src/lib/site-config.ts.
  */
-export const SITE_URL = "";
+export const SITE_URL = "https://ai-agent-production-readiness-kit.vercel.app";
 
 export type LinkKey = keyof typeof PRODUCT_LINKS;
 
